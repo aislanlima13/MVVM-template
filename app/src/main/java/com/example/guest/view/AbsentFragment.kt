@@ -8,17 +8,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.guest.databinding.FragmentSlideshowBinding
+import com.example.guest.R
 import com.example.guest.viewmodel.AbsentViewModel
 
 class AbsentFragment : Fragment() {
 
     private lateinit var absentViewModel: AbsentViewModel
-    private var _binding: FragmentSlideshowBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,18 +23,12 @@ class AbsentFragment : Fragment() {
         absentViewModel =
             ViewModelProvider(this).get(AbsentViewModel::class.java)
 
-        _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        val root: View = inflater.inflate(R.layout.fragment_absent, container, false)
 
-        val textView: TextView = binding.textSlideshow
+        val textView: TextView = root.findViewById(R.id.text_slideshow)
         absentViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

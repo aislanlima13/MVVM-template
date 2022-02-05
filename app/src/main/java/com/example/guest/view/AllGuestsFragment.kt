@@ -8,17 +8,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.guest.databinding.FragmentHomeBinding
+import com.example.guest.R
 import com.example.guest.viewmodel.AllGuestsViewModel
 
 class AllGuestsFragment : Fragment() {
 
     private lateinit var allGuestViewModel: AllGuestsViewModel
-    private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,18 +23,12 @@ class AllGuestsFragment : Fragment() {
         allGuestViewModel =
             ViewModelProvider(this).get(AllGuestsViewModel::class.java)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        val root: View = inflater.inflate(R.layout.fragment_all, container, false)
 
-        val textView: TextView = binding.textHome
+        val textView: TextView = root.findViewById(R.id.text_home)
         allGuestViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
