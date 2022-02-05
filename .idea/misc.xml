@@ -5,11 +5,13 @@
       <map>
         <entry key="..\:/android/Guest/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.3314814814814815" />
         <entry key="..\:/android/Guest/app/src/main/res/layout/activity_guest_form.xml" value="0.33055555555555555" />
+        <entry key="..\:/android/Guest/app/src/main/res/layout/fragment_absent.xml" value="0.20925925925925926" />
         <entry key="..\:/android/Guest/app/src/main/res/layout/fragment_all.xml" value="0.20925925925925926" />
         <entry key="..\:/android/Guest/app/src/main/res/layout/fragment_gallery.xml" value="0.20925925925925926" />
         <entry key="..\:/android/Guest/app/src/main/res/layout/fragment_home.xml" value="0.2777777777777778" />
         <entry key="..\:/android/Guest/app/src/main/res/layout/fragment_present.xml" value="0.20925925925925926" />
         <entry key="..\:/android/Guest/app/src/main/res/layout/fragment_slideshow.xml" value="0.20925925925925926" />
+        <entry key="..\:/android/Guest/app/src/main/res/layout/row_guest.xml" value="0.20925925925925926" />
         <entry key="..\:/android/Guest/app/src/main/res/menu/activity_main_drawer.xml" value="0.3569230769230769" />
       </map>
     </option>
