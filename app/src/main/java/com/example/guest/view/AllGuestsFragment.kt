@@ -35,9 +35,12 @@ class AllGuestsFragment : Fragment() {
 
         observer()
 
-        allGuestViewModel.load()
-
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        allGuestViewModel.load()
     }
 
     private fun observer() {

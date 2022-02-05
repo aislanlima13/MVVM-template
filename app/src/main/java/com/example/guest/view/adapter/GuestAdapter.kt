@@ -21,7 +21,7 @@ class GuestAdapter : RecyclerView.Adapter<GuestViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return mGuestList.size
+        return mGuestList.count()
     }
 
     fun updateGuests(list: List<GuestModel>) {
