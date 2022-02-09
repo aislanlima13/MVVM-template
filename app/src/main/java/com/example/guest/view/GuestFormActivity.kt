@@ -17,6 +17,7 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
     val rbAbsent by lazy { findViewById<RadioButton>(R.id.rb_absent) }
 
     private lateinit var mViewModel: GuestFormViewModel
+    private var mGuestId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +39,7 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
             val name = edtName.text.toString()
             val presence = rbPresence.isChecked
 
-            mViewModel.save(name, presence)
+            mViewModel.save(mGuestId, name, presence)
         }
     }
 
@@ -49,8 +50,8 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
     private fun loadData() {
         val bundle = intent.extras
         if (bundle != null) {
-            val id = bundle.getInt(GuestConstants.GUEST_ID)
-            mViewModel.load(id)
+            mGuestId = bundle.getInt(GuestConstants.GUEST_ID)
+            mViewModel.load(mGuestId)
         }
     }
 
