@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.guest.service.model.GuestModel
 import com.example.guest.service.repository.GuestRepository
 
@@ -17,5 +16,9 @@ class AllGuestsViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun load() {
         mGuestList.value = mGuestRepository.getAll()
+    }
+
+    fun delete(id: Int) {
+        mGuestRepository.delete(id)
     }
 }
