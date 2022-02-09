@@ -24,9 +24,11 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
 
         mViewModel = ViewModelProvider(this).get(GuestFormViewModel::class.java)
 
-        loadData()
         setListeners()
         observe()
+        loadData()
+
+        rbPresence.isChecked = true
     }
 
     override fun onClick(v: View?) {
