@@ -3,20 +3,18 @@ package com.example.guest.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RadioButton
-import android.widget.Toast
-import androidx.lifecycle.Observer
+import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import com.example.guest.viewmodel.GuestFormViewModel
 import com.example.guest.R
+import com.example.guest.service.constants.GuestConstants
 
 class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
 
     val btnSave by lazy { findViewById<Button>(R.id.btn_save) }
     val edtName by lazy { findViewById<EditText>(R.id.edt_name) }
     val rbPresence by lazy { findViewById<RadioButton>(R.id.rb_presence) }
+    val rbAbsent by lazy { findViewById<RadioButton>(R.id.rb_absent) }
 
     private lateinit var mViewModel: GuestFormViewModel
 
@@ -26,6 +24,7 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
 
         mViewModel = ViewModelProvider(this).get(GuestFormViewModel::class.java)
 
+        loadData()
         setListeners()
         observe()
     }
@@ -45,6 +44,14 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
         btnSave.setOnClickListener(this)
     }
 
+    private fun loadData() {
+        val bundle = intent.extras
+        if (bundle != null) {
+            val id = bundle.getInt(GuestConstants.GUEST_ID)
+            mViewModel.load(id)
+        }
+    }
+
     private fun observe() {
         mViewModel.saveGuest.observe(this, {
             if (it) {
@@ -54,7 +61,15 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
             }
             finish()
         })
+
+        mViewModel.guest.observe(this, {
+            edtName.setText(it.name)
+
+            if (it.presence) {
+                rbPresence.isChecked = true
+            } else {
+                rbAbsent.isChecked = true
+            }
+        })
     }
-
-
 }
